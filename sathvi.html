@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Question ❤️</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ff758c,#ff7eb3,#fad0c4);
+font-family:Arial;
+text-align:center;
+overflow:hidden;
+}
+
+h1{
+color:white;
+font-size:36px;
+margin-bottom:20px;
+}
+
+#message{
+color:white;
+font-size:20px;
+margin-bottom:30px;
+}
+
+.buttons{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:15px;
+}
+
+button{
+padding:15px 40px;
+font-size:20px;
+border:none;
+border-radius:40px;
+cursor:pointer;
+transition:0.3s;
+}
+
+#yes{
+background:#ff0066;
+color:white;
+}
+
+#no{
+background:black;
+color:white;
+}
+
+.heart{
+position:absolute;
+font-size:25px;
+animation:float 5s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-900px);opacity:0;}
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>I Love You ❤️</h1>
+<div id="message">Do You Love Me?</div>
+
+<div class="buttons">
+<button id="yes" onclick="yesClick()">YES ❤️</button>
+<button id="no" onclick="moveNo()">NO 😅</button>
+</div>
+
+<script>
+
+let count=0;
+
+let texts=[
+"Are you sure? 😏",
+"Think again ❤️",
+"Don't break my heart 💔",
+"Please say yes 🥺",
+"You know the answer 😌"
+];
+
+function moveNo(){
+
+let btn=document.getElementById("no");
+
+let btnWidth=btn.offsetWidth;
+let btnHeight=btn.offsetHeight;
+
+let maxX=window.innerWidth-btnWidth;
+let maxY=window.innerHeight-btnHeight;
+
+let x=Math.random()*maxX;
+let y=Math.random()*maxY;
+
+btn.style.position="fixed";
+btn.style.left=x+"px";
+btn.style.top=y+"px";
+
+document.getElementById("message").innerText=texts[count%texts.length];
+
+let yes=document.getElementById("yes");
+yes.style.transform="scale("+(1+count*0.2)+")";
+
+count++;
+
+if(count>5){
+btn.style.display="none";
+document.getElementById("message").innerText="Now you only have YES ❤️";
+}
+
+}
+
+function yesClick(){
+
+document.body.innerHTML = `
+<h1 style="margin-top:40vh;color:white;text-align:center;">
+I knew it before 😌❤️<br><br>
+I love youuuuu ❤️<br><br>
+Umahhhh 😘😘
+</h1>
+`;
+
+
+for(let i=0;i<60;i++){
+let heart=document.createElement("div");
+heart.innerHTML="❤️";
+heart.className="heart";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*30+20)+"px";
+heart.style.animationDuration=(Math.random()*3+2)+"s";
+document.body.appendChild(heart);
+}
+
+}
+
+</script>
+
+</body>
+</html>
